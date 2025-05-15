@@ -1,6 +1,8 @@
 # 忽略 Go 编译生成的可执行文件（假设项目名为 yourproject）
 framework-mg
 framework-mg.exe
+main
+main.exe
 framework/
 
 
