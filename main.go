@@ -25,13 +25,13 @@ func main() {
 			go server.Run(":8080")
 		}),
 		fx.Invoke(func(mqtt mqtt.Client) {
-			// go func() {
-			// 	if token := mqtt.Connect(); token.Wait() && token.Error() != nil {
-			// 		panic(token.Error())
-			// 	}
-			// 	mqtt.Publish("homeassistant/switch/building/door_lock/config", 0, false, "{\"unique_id\":\"building-door-lock-001\",\"name\":\"大楼门禁\",\"icon\":\"mdi:gesture-tap-button\",\"state_topic\":\"homeassistant/switch/building/door_lock/state\",\"command_topic\":\"homeassistant/switch/building/door_lock/set\",\"json_attributes_topic\":\"homeassistant/switch/building/door_lock/attributes\",\"device\":{\"identifiers\":\"door-lock-001\",\"manufacturer\":\"华为\",\"model\":\"LK\",\"name\":\"esp32\",\"sw_version\":\"1.0\"}}")
-			// 	mqtt.Disconnect(1)
-			// }()
+			go func() {
+				if token := mqtt.Connect(); token.Wait() && token.Error() != nil {
+					panic(token.Error())
+				}
+				mqtt.Publish("homeassistant/switch/building/door_lock/config", 0, false, "{\"unique_id\":\"building-door-lock-001\",\"name\":\"大楼门禁\",\"icon\":\"mdi:gesture-tap-button\",\"state_topic\":\"homeassistant/switch/building/door_lock/state\",\"command_topic\":\"homeassistant/switch/building/door_lock/set\",\"json_attributes_topic\":\"homeassistant/switch/building/door_lock/attributes\",\"device\":{\"identifiers\":\"door-lock-001\",\"manufacturer\":\"华为\",\"model\":\"LK\",\"name\":\"esp32\",\"sw_version\":\"1.0\"}}")
+				mqtt.Disconnect(1)
+			}()
 		}),
 	).Run()
 }
