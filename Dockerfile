@@ -10,6 +10,9 @@ COPY go.mod go.sum ./
 # Download dependencies
 RUN go mod download
 
+RUN go env -w GO111MODULE=on
+RUN go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/
+
 # Copy source code
 COPY . .
 
