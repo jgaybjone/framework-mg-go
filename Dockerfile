@@ -32,6 +32,8 @@ WORKDIR /app
 # Copy the binary from builder
 COPY --from=builder /app/main .
 
+apk --no-cache add curl
+
 # Expose port if needed
 # EXPOSE 8080
 
