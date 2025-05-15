@@ -32,7 +32,10 @@ WORKDIR /app
 # Copy the binary from builder
 COPY --from=builder /app/main .
 
-RUN apk --no-cache add curl
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories \
+    && apk update \
+    && apk add --no-cache curl
+
 
 # Expose port if needed
 # EXPOSE 8080
