@@ -1,5 +1,5 @@
 # Build stage
-FROM golang:1.24.2-alpine AS builder
+FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/golang:1.24.2-alpine AS builder
 
 # Set working directory
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
 # Final stage
-FROM alpine:latest
+FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/alpine:latest
 
 # Install ca-certificates for HTTPS requests
 RUN apk --no-cache add ca-certificates
