@@ -7,11 +7,13 @@ WORKDIR /app
 # Copy go mod and sum files
 COPY go.mod go.sum ./
 
-# Download dependencies
-RUN go mod download
 
 RUN go env -w GO111MODULE=on
 RUN go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/
+
+# Download dependencies
+RUN go mod download
+
 
 # Copy source code
 COPY . .
