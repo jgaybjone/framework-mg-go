@@ -11,17 +11,20 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/samber/lo"
+	"go.uber.org/zap"
 )
 
 type FrameworkController struct {
 	baseDir string
+	logger  *zap.Logger
 }
 
-func NewFrameworkController() Router {
+func NewFrameworkController(logger *zap.Logger) Router {
 	f := FrameworkController{baseDir: os.Getenv("BASE_DIR")}
 	if f.baseDir == "" {
 		f.baseDir = "."
 	}
+	f.logger = logger
 	return &f
 }
 
